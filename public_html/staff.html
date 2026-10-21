@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Painel da equipa para rever aprovações de estafetas e veículos.">
+    <title>Painel da Equipa | Courier Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="brand">CMS Logística</h1>
+        <nav class="site-nav" aria-label="Navegação principal">
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="team.html">Team</a>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <div class="intro">
+            <h2>Painel da Equipa</h2>
+            <p>Reveja os pedidos de adesão e os documentos dos veículos.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <section class="dashboard-panel" aria-labelledby="courier-approvals-heading">
+                <h3 class="section-heading" id="courier-approvals-heading">Pending Courier Approvals</h3>
+                <p class="section-description">Pedidos de registo de estafetas por analisar.</p>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Estafeta</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Data do pedido</th>
+                                <th scope="col">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Rita Martins</td>
+                                <td>rita.martins@example.com</td>
+                                <td>21/10/2026</td>
+                                <td>
+                                    <div class="approval-actions">
+                                        <button class="approval-button approval-button-approve" type="button">Aprovar</button>
+                                        <button class="approval-button" type="button">Rever</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>João Costa</td>
+                                <td>joao.costa@example.com</td>
+                                <td>20/10/2026</td>
+                                <td>
+                                    <div class="approval-actions">
+                                        <button class="approval-button approval-button-approve" type="button">Aprovar</button>
+                                        <button class="approval-button" type="button">Rever</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="dashboard-panel" aria-labelledby="vehicle-approvals-heading">
+                <h3 class="section-heading" id="vehicle-approvals-heading">Pending Vehicle Approvals</h3>
+                <p class="section-description">Verifique os certificados antes de aprovar os veículos.</p>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Veículo</th>
+                                <th scope="col">Estafeta</th>
+                                <th scope="col">Documentação</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AA-00-AA</td>
+                                <td>Rita Martins</td>
+                                <td><span class="alert-badge">Seguro expirado</span></td>
+                                <td><button class="approval-button" type="button">Rever</button></td>
+                            </tr>
+                            <tr>
+                                <td>BB-11-BB</td>
+                                <td>João Costa</td>
+                                <td><span class="alert-badge">Inspeção expirada</span></td>
+                                <td><button class="approval-button" type="button">Rever</button></td>
+                            </tr>
+                            <tr>
+                                <td>CC-22-CC</td>
+                                <td>Inês Silva</td>
+                                <td><span class="alert-text">Seguro expira em 3 dias</span></td>
+                                <td><button class="approval-button" type="button">Rever</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Courier Management System - Sprint 1</p>
+    </footer>
+</body>
+</html>

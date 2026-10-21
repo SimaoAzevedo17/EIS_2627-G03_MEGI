@@ -134,6 +134,151 @@ a {
     box-shadow: 0 8px 24px rgba(16, 42, 67, 0.06);
 }
 
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.dashboard-panel {
+    min-width: 0;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border: 1px solid #e4eaf2;
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: 0 8px 24px rgba(16, 42, 67, 0.06);
+}
+
+.dashboard-panel-wide {
+    grid-column: 1 / -1;
+}
+
+.dashboard-panel .section-description {
+    margin-bottom: 1.25rem;
+}
+
+.data-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.8rem 0.9rem;
+    border-bottom: 1px solid #eaecf0;
+    vertical-align: middle;
+}
+
+.data-table th {
+    color: var(--primary);
+    background: #f8fafc;
+    font-size: 0.82rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.alert-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid #fecdca;
+    border-radius: 999px;
+    color: var(--error);
+    background: #fef3f2;
+    font-size: 0.78rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.alert-text {
+    color: var(--error);
+    font-weight: 700;
+}
+
+.approval-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.approval-button {
+    min-height: 36px;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--primary);
+    border-radius: 7px;
+    color: var(--primary);
+    background: var(--surface);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.approval-button:hover {
+    background: var(--primary-light);
+}
+
+.approval-button-approve {
+    color: var(--surface);
+    background: var(--primary);
+}
+
+.approval-button-approve:hover {
+    background: var(--primary-dark);
+}
+
+.dashboard-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.dashboard-form .primary-button {
+    width: auto;
+    justify-self: start;
+    min-width: 190px;
+    margin-top: 0;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.kpi-card {
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid #d6e6f5;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ffffff, #f2f8fe);
+}
+
+.kpi-label {
+    margin: 0 0 0.65rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.kpi-value {
+    margin: 0;
+    color: var(--primary);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
 .vehicle-select {
     width: min(100%, 440px);
     min-height: 46px;
@@ -456,7 +601,16 @@ select:focus-visible,
         gap: 0.75rem;
     }
 
+    .dashboard-grid,
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
     .field-full {
+        grid-column: auto;
+    }
+
+    .dashboard-panel-wide {
         grid-column: auto;
     }
 }

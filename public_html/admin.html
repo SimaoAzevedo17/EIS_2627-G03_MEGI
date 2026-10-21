@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Painel de administração de utilizadores e indicadores operacionais.">
+    <title>Painel de Administração | Courier Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="brand">CMS Logística</h1>
+        <nav class="site-nav" aria-label="Navegação principal">
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="team.html">Team</a>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <div class="intro">
+            <h2>Painel de Administração</h2>
+            <p>Gira aprovações, mantenha os dados pessoais e acompanhe a operação.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <section class="dashboard-panel" aria-labelledby="staff-approvals-heading">
+                <h3 class="section-heading" id="staff-approvals-heading">Pending Staff Approvals</h3>
+                <p class="section-description">Pedidos de acesso de membros da equipa pendentes.</p>
+                <div class="data-table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Pedido</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Pedro Almeida</td>
+                                <td>pedro.almeida@example.com</td>
+                                <td>20/10/2026</td>
+                                <td>
+                                    <div class="approval-actions">
+                                        <button class="approval-button approval-button-approve" type="button">Aprovar</button>
+                                        <button class="approval-button" type="button">Rever</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sara Rocha</td>
+                                <td>sara.rocha@example.com</td>
+                                <td>19/10/2026</td>
+                                <td>
+                                    <div class="approval-actions">
+                                        <button class="approval-button approval-button-approve" type="button">Aprovar</button>
+                                        <button class="approval-button" type="button">Rever</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="dashboard-panel" aria-labelledby="personal-info-heading">
+                <h3 class="section-heading" id="personal-info-heading">Edit Personal Information</h3>
+                <p class="section-description">Atualize os dados do perfil de administração.</p>
+                <form class="dashboard-form" id="personal-info-form">
+                    <div class="field">
+                        <label for="admin-name">Nome</label>
+                        <input id="admin-name" name="name" type="text" value="Alexandre Pereira" autocomplete="name">
+                    </div>
+                    <div class="field">
+                        <label for="admin-email">Email</label>
+                        <input id="admin-email" name="email" type="email" value="admin@cms.example.com" autocomplete="email">
+                    </div>
+                    <div class="field">
+                        <label for="admin-phone">Telefone</label>
+                        <input id="admin-phone" name="phone" type="tel" value="+351 220 000 000" autocomplete="tel">
+                    </div>
+                    <button class="primary-button" type="submit">Guardar alterações</button>
+                </form>
+            </section>
+
+            <section class="dashboard-panel dashboard-panel-wide" aria-labelledby="kpi-heading">
+                <h3 class="section-heading" id="kpi-heading">Operational KPI Statistics Dashboard</h3>
+                <p class="section-description">Resumo dos principais indicadores operacionais.</p>
+                <div class="kpi-grid">
+                    <article class="kpi-card">
+                        <p class="kpi-label">Total de estafetas</p>
+                        <p class="kpi-value">128</p>
+                    </article>
+                    <article class="kpi-card">
+                        <p class="kpi-label">Rotas ativas</p>
+                        <p class="kpi-value">36</p>
+                    </article>
+                    <article class="kpi-card">
+                        <p class="kpi-label">Membros da equipa</p>
+                        <p class="kpi-value">14</p>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Courier Management System - Sprint 1</p>
+    </footer>
+</body>
+</html>
