@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inicie sessão ou crie uma conta no Courier Management System.">
+    <title>Login e Registo | Courier Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="brand">CMS Logística</h1>
+        <nav class="site-nav" aria-label="Navegação principal">
+            <a href="index.html">Home</a>
+            <a href="login.html" aria-current="page">Login</a>
+            <a href="team.html">Team</a>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <div class="intro">
+            <h2>A sua plataforma de logística</h2>
+            <p>Inicie sessão ou crie uma conta para aceder ao Courier Management System.</p>
+        </div>
+
+        <section class="auth-card" aria-label="Acesso à plataforma">
+            <div class="auth-tabs" role="tablist" aria-label="Escolha uma opção">
+                <button class="tab-button" id="login-tab" type="button" role="tab"
+                        aria-selected="true" aria-controls="login-panel">Login</button>
+                <button class="tab-button" id="register-tab" type="button" role="tab"
+                        aria-selected="false" aria-controls="register-panel" tabindex="-1">Registo</button>
+            </div>
+
+            <section class="form-panel" id="login-panel" role="tabpanel" aria-labelledby="login-tab">
+                <h3 class="form-heading">Bem-vindo de volta</h3>
+                <p class="form-description">Introduza as suas credenciais para continuar.</p>
+                <form id="login-form" novalidate>
+                    <div class="form-alert" id="login-alert" role="alert" aria-live="polite"></div>
+                    <div class="form-grid">
+                        <div class="field field-full">
+                            <label for="login-username">Username <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input id="login-username" name="username" type="text" autocomplete="username"
+                                   required aria-describedby="login-username-error">
+                            <p class="field-error" id="login-username-error"></p>
+                        </div>
+                        <div class="field field-full">
+                            <label for="login-password">Password <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input id="login-password" name="password" type="password" autocomplete="current-password"
+                                   required aria-describedby="login-password-error">
+                            <p class="field-error" id="login-password-error"></p>
+                        </div>
+                        <div class="field field-full">
+                            <button class="primary-button" type="submit">Iniciar sessão</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <section class="form-panel" id="register-panel" role="tabpanel" aria-labelledby="register-tab" hidden>
+                <h3 class="form-heading">Criar conta</h3>
+                <p class="form-description">Preencha os seus dados para se registar na plataforma.</p>
+                <form id="register-form" novalidate>
+                    <div class="form-alert" id="register-alert" role="alert" aria-live="polite"></div>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="register-username">Username <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input id="register-username" name="username" type="text" autocomplete="username"
+                                   required aria-describedby="register-username-error">
+                            <p class="field-error" id="register-username-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="register-password">Password <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input id="register-password" name="password" type="password" autocomplete="new-password"
+                                   required aria-describedby="register-password-error">
+                            <p class="field-error" id="register-password-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="register-email">Email <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input id="register-email" name="email" type="email" autocomplete="email"
+                                   required aria-describedby="register-email-error">
+                            <p class="field-error" id="register-email-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="register-name">Nome <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input id="register-name" name="name" type="text" autocomplete="name"
+                                   required aria-describedby="register-name-error">
+                            <p class="field-error" id="register-name-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="register-phone">Telefone <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input id="register-phone" name="phone" type="tel" autocomplete="tel"
+                                   required aria-describedby="register-phone-error">
+                            <p class="field-error" id="register-phone-error"></p>
+                        </div>
+                        <div class="field">
+                            <label for="register-nif">NIF <span class="required-mark" aria-hidden="true">*</span></label>
+                            <input id="register-nif" name="nif" type="text" inputmode="numeric"
+                                   required aria-describedby="register-nif-error">
+                            <p class="field-error" id="register-nif-error"></p>
+                        </div>
+                        <div class="field field-full">
+                            <label for="register-role">Função <span class="required-mark" aria-hidden="true">*</span></label>
+                            <select id="register-role" name="role" required aria-describedby="register-role-error">
+                                <option value="">Selecione uma função</option>
+                                <option value="client">Cliente</option>
+                                <option value="courier">Estafeta</option>
+                                <option value="staff">Funcionário</option>
+                            </select>
+                            <p class="field-error" id="register-role-error"></p>
+                        </div>
+                        <div class="field field-full">
+                            <button class="primary-button" type="submit">Criar conta</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Courier Management System - Sprint 1</p>
+    </footer>
+
+    <script>
+        const tabs = document.querySelectorAll('[role="tab"]');
+        const panels = document.querySelectorAll('[role="tabpanel"]');
+
+        function activateTab(tab) {
+            tabs.forEach((item) => {
+                const selected = item === tab;
+                item.setAttribute('aria-selected', String(selected));
+                item.tabIndex = selected ? 0 : -1;
+            });
+            panels.forEach((panel) => {
+                panel.hidden = panel.id !== tab.getAttribute('aria-controls');
+            });
+        }
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => activateTab(tab));
+            tab.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    const direction = event.key === 'ArrowRight' ? 1 : -1;
+                    const nextTab = tabs[(index + direction + tabs.length) % tabs.length];
+                    activateTab(nextTab);
+                    nextTab.focus();
+                }
+            });
+        });
+
+        document.querySelectorAll('form').forEach((form) => {
+            const alert = form.querySelector('.form-alert');
+            const fields = Array.from(form.querySelectorAll('[required]'));
+
+            function validateField(field) {
+                const error = document.getElementById(field.getAttribute('aria-describedby'));
+                let message = '';
+
+                if (!field.value.trim()) {
+                    message = 'Este campo é obrigatório.';
+                } else if (!field.checkValidity()) {
+                    message = 'Introduza um endereço de email válido.';
+                }
+
+                error.textContent = message;
+                field.setAttribute('aria-invalid', String(Boolean(message)));
+                return !message;
+            }
+
+            fields.forEach((field) => {
+                field.addEventListener('input', () => {
+                    validateField(field);
+                    alert.textContent = '';
+                    alert.removeAttribute('data-state');
+                });
+                field.addEventListener('change', () => validateField(field));
+            });
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const isValid = fields.map(validateField).every(Boolean);
+
+                if (!isValid) {
+                    alert.textContent = 'Verifique os campos assinalados antes de continuar.';
+                    alert.dataset.state = 'error';
+                    form.querySelector('[aria-invalid="true"]').focus();
+                    return;
+                }
+
+                alert.textContent = 'Dados validados. A submissão de contas estará disponível quando o serviço estiver ligado.';
+                alert.dataset.state = 'success';
+            });
+        });
+    </script>
+</body>
+</html>

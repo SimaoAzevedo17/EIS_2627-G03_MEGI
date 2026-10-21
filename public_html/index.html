@@ -1,15 +1,111 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>My Website</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>teste 123</div>
-    </body>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS - Courier Management System</title>
+    <style>
+        /* Estilos base (CSS3) para o protótipo */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #e6f2ff;
+        }
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            background-color: white;
+        }
+        .metric-card {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 20%;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .btn {
+            background-color: #004080;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Navegação -->
+    <header>
+        <h1>CMS Logística</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login / Register</a>
+            <a href="team.html">Team</a>
+        </nav>
+    </header>
+
+    <!-- Secção Principal / Visão Geral -->
+    <section class="hero">
+        <h2>Gestão Centralizada de Entregas e Frota</h2>
+        <p>Plataforma digital para otimizar as operações logísticas, rotas de estafetas e garantir transparência na cadeia de abastecimento em tempo real.</p>
+        <a href="login.html" class="btn">Aceder à Plataforma</a>
+    </section>
+
+    <!-- Secção de Métricas (Requisito da Home/Portal) -->
+    <section class="metrics">
+        <div class="metric-card">
+            <h3>+5000</h3>
+            <p>Encomendas Entregues</p>
+        </div>
+        <div class="metric-card">
+            <h3>120</h3>
+            <p>Estafetas Ativos</p>
+        </div>
+        <div class="metric-card">
+            <h3>+50</h3>
+            <p>Veículos na Frota</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Courier Management System - Sprint 1</p>
+    </footer>
+
+</body>
 </html>

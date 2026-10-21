@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Submeta os detalhes de um produto e da respetiva encomenda.">
+    <title>Submeter Encomenda | Courier Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+</head>
+<body>
+    <header class="site-header">
+        <h1 class="brand">CMS Logística</h1>
+        <nav class="site-nav" aria-label="Navegação principal">
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="team.html">Team</a>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <div class="intro">
+            <h2>Área de Cliente</h2>
+            <p>Registe os detalhes do produto e os pontos de origem e destino da encomenda.</p>
+        </div>
+
+        <section class="auth-card client-card" aria-labelledby="submission-heading">
+            <h3 class="section-heading" id="submission-heading">Order &amp; Product Submission</h3>
+            <p class="section-description">Todos os campos são obrigatórios. As coordenadas devem ser valores numéricos.</p>
+
+            <form id="order-form" novalidate>
+                <div class="form-alert" id="order-alert" role="alert" aria-live="polite"></div>
+                <div class="form-grid">
+                    <div class="field field-full">
+                        <label for="product-description">Descrição do produto <span class="required-mark" aria-hidden="true">*</span></label>
+                        <input id="product-description" name="description" type="text" required
+                               aria-describedby="product-description-error">
+                        <p class="field-error" id="product-description-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="product-category">Categoria <span class="required-mark" aria-hidden="true">*</span></label>
+                        <input id="product-category" name="category" type="text" required
+                               aria-describedby="product-category-error">
+                        <p class="field-error" id="product-category-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="product-weight">Peso (kg) <span class="required-mark" aria-hidden="true">*</span></label>
+                        <input id="product-weight" name="weight_kg" type="number" min="0" step="any" required
+                               aria-describedby="product-weight-error">
+                        <p class="field-error" id="product-weight-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="product-volume">Volume (m³) <span class="required-mark" aria-hidden="true">*</span></label>
+                        <input id="product-volume" name="volume_m3" type="number" min="0" step="any" required
+                               aria-describedby="product-volume-error">
+                        <p class="field-error" id="product-volume-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="origin-lat">Latitude de origem <span class="required-mark" aria-hidden="true">*</span></label>
+                        <input id="origin-lat" name="origin_lat" type="text" inputmode="decimal" required
+                               placeholder="Ex.: 41.1778" aria-describedby="origin-lat-error">
+                        <p class="field-error" id="origin-lat-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="origin-long">Longitude de origem <span class="required-mark" aria-hidden="true">*</span></label>
+                        <input id="origin-long" name="origin_long" type="text" inputmode="decimal" required
+                               placeholder="Ex.: -8.5980" aria-describedby="origin-long-error">
+                        <p class="field-error" id="origin-long-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="dest-lat">Latitude de destino <span class="required-mark" aria-hidden="true">*</span></label>
+                        <input id="dest-lat" name="dest_lat" type="text" inputmode="decimal" required
+                               placeholder="Ex.: 41.15" aria-describedby="dest-lat-error">
+                        <p class="field-error" id="dest-lat-error"></p>
+                    </div>
+                    <div class="field">
+                        <label for="dest-long">Longitude de destino <span class="required-mark" aria-hidden="true">*</span></label>
+                        <input id="dest-long" name="dest_long" type="text" inputmode="decimal" required
+                               placeholder="Ex.: -8.61" aria-describedby="dest-long-error">
+                        <p class="field-error" id="dest-long-error"></p>
+                    </div>
+                    <div class="field field-full">
+                        <button class="primary-button" type="submit">Validar encomenda</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="map-section" aria-labelledby="map-heading">
+            <h3 class="section-heading" id="map-heading">Mapa de localização</h3>
+            <p class="section-description">Localização de referência para o protótipo: FEUP, Porto.</p>
+            <div class="map-container" id="order-map" role="region" aria-label="Mapa OpenStreetMap com marcador na FEUP"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2026 Courier Management System - Sprint 1</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        const feupCoordinates = [41.1778, -8.5980];
+        const map = L.map('order-map').setView(feupCoordinates, 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker(feupCoordinates).addTo(map).bindPopup('FEUP, Porto').openPopup();
+
+        const orderForm = document.getElementById('order-form');
+        const orderAlert = document.getElementById('order-alert');
+        const requiredFields = Array.from(orderForm.querySelectorAll('[required]'));
+        const coordinateNames = new Set(['origin_lat', 'origin_long', 'dest_lat', 'dest_long']);
+        const numericPattern = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/;
+
+        function validateField(field) {
+            const error = document.getElementById(field.getAttribute('aria-describedby'));
+            const value = field.value.trim();
+            let message = '';
+
+            if (!value) {
+                message = 'Este campo é obrigatório.';
+            } else if (coordinateNames.has(field.name) && !numericPattern.test(value)) {
+                message = 'Introduza um valor numérico válido.';
+            } else if (!field.checkValidity()) {
+                message = field.validationMessage || 'Introduza um valor válido.';
+            }
+
+            error.textContent = message;
+            field.setAttribute('aria-invalid', String(Boolean(message)));
+            return !message;
+        }
+
+        requiredFields.forEach((field) => {
+            field.addEventListener('input', () => {
+                validateField(field);
+                orderAlert.textContent = '';
+                orderAlert.removeAttribute('data-state');
+            });
+            field.addEventListener('change', () => validateField(field));
+        });
+
+        orderForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const isValid = requiredFields.map(validateField).every(Boolean);
+
+            if (!isValid) {
+                orderAlert.textContent = 'Verifique os campos assinalados antes de submeter a encomenda.';
+                orderAlert.dataset.state = 'error';
+                orderForm.querySelector('[aria-invalid="true"]').focus();
+                return;
+            }
+
+            orderAlert.textContent = 'Dados validados. A submissão estará disponível quando o serviço estiver ligado.';
+            orderAlert.dataset.state = 'success';
+        });
+    </script>
+</body>
+</html>
