@@ -125,6 +125,155 @@ a {
     background: #eaf3fc;
 }
 
+.courier-section {
+    margin-top: 1.5rem;
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1px solid #e4eaf2;
+    border-radius: 16px;
+    background: var(--surface);
+    box-shadow: 0 8px 24px rgba(16, 42, 67, 0.06);
+}
+
+.vehicle-select {
+    width: min(100%, 440px);
+    min-height: 46px;
+    padding: 0.7rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    background: var(--surface);
+    font: inherit;
+}
+
+.status-summary {
+    margin: 0 0 1rem;
+    color: var(--muted);
+}
+
+.status-summary strong {
+    color: var(--primary);
+}
+
+.status-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.status-button,
+.secondary-button {
+    min-height: 44px;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    color: var(--primary);
+    background: var(--surface);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.status-button:hover,
+.secondary-button:hover {
+    background: var(--primary-light);
+}
+
+.status-button:disabled {
+    border-color: var(--border);
+    color: var(--muted);
+    background: #f2f4f7;
+    cursor: not-allowed;
+}
+
+.status-button-primary {
+    color: var(--surface);
+    background: var(--primary);
+}
+
+.status-button-primary:hover {
+    color: var(--surface);
+    background: var(--primary-dark);
+}
+
+.status-button-danger {
+    border-color: var(--error);
+    color: var(--error);
+}
+
+.status-button-danger:hover {
+    background: #fef3f2;
+}
+
+.signature-canvas {
+    display: block;
+    width: min(100%, 700px);
+    height: 220px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.epod-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.75rem;
+}
+
+.photo-upload {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.photo-upload input {
+    max-width: 100%;
+    font: inherit;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #eaecf0;
+    white-space: nowrap;
+}
+
+.orders-table th {
+    color: var(--primary);
+    background: #f8fafc;
+    font-size: 0.85rem;
+}
+
+.orders-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.order-status-completed {
+    color: var(--success);
+    font-weight: 700;
+}
+
+[hidden] {
+    display: none !important;
+}
+
 .auth-tabs {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -153,7 +302,8 @@ a {
 .tab-button:focus-visible,
 button:focus-visible,
 input:focus-visible,
-select:focus-visible {
+select:focus-visible,
+.signature-canvas:focus-visible {
     outline: 3px solid #84caff;
     outline-offset: 2px;
 }
