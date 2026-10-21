@@ -1,12 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title">
-  <title id="title">PandaExpress</title>
-  <path fill="#173d32" d="M18 14a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm60 0a15 15 0 1 1 0 30 15 15 0 0 1 0-30Z"/>
-  <path fill="#fffaf0" stroke="#173d32" stroke-width="4" d="M48 23c-22 0-36 16-36 37 0 20 15 31 36 31s36-11 36-31C84 39 70 23 48 23Z"/>
-  <path fill="#173d32" d="M29 43c7-6 17-3 20 5 3 9-3 20-12 21-8 1-15-7-14-15 0-5 2-9 6-11Zm38 0c-7-6-17-3-20 5-3 9 3 20 12 21 8 1 15-7 14-15 0-5-2-9-6-11Z"/>
-  <path fill="#fffaf0" d="M31 50a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm34 0a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z"/>
-  <path fill="#173d32" d="M44 67c2-3 7-3 9 0l-4 5-5-5Z"/>
-  <path fill="none" stroke="#173d32" stroke-linecap="round" stroke-width="2.5" d="M48 72c-4 5-10 5-14 1m14-1c4 5 10 5 14 1"/>
-  <path fill="#b93638" d="M16 31c10-1 22-7 28-18 2 11 9 17 20 20-11 5-22 6-34 4l-14-6Z"/>
-  <path fill="#fffaf0" d="M44 12c3-7 9-8 14-5l-4 12c-5 0-8-2-10-7Zm19 21c6 0 10 2 13 5-7 3-13 3-19 1l6-6Z"/>
-  <circle cx="59" cy="7" r="4" fill="#d8b66a"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">PandaExpress - panda de Natal</title>
+  <circle cx="64" cy="64" r="60" fill="#173d32" stroke="#d8b66a" stroke-width="3"/>
+  <circle cx="64" cy="64" r="54" fill="none" stroke="#fffaf0" stroke-opacity=".22" stroke-width="1.5"/>
+
+  <path fill="#0c241e" d="M30 40c-8-5-12-15-8-23 7-12 24-5 31 9m45 14c8-5 12-15 8-23-7-12-24-5-31 9"/>
+  <path fill="#fffaf0" stroke="#d8b66a" stroke-width="2" d="M64 35c-23 0-39 17-39 41 0 23 16 39 39 39s39-16 39-39c0-24-16-41-39-41Z"/>
+
+  <path fill="#b93638" d="M27 47c14-7 25-19 31-35 15 8 29 16 47 23l-8 20c-20-8-45-10-70-2Z"/>
+  <path fill="#fffaf0" stroke="#d8b66a" stroke-width="2" d="M25 46c22-10 53-9 82 4l-5 13c-25-11-52-12-72-3l-7-14Z"/>
+  <circle cx="59" cy="13" r="9" fill="#fffaf0" stroke="#d8b66a" stroke-width="2"/>
+
+  <path fill="#173d32" d="M43 61c7-5 16-2 18 6 2 7-2 17-10 18-8 1-14-6-13-14 0-4 2-8 5-10Zm42 0c-7-5-16-2-18 6-2 7 2 17 10 18 8 1 14-6 13-14 0-4-2-8-5-10Z"/>
+  <ellipse cx="50" cy="71" rx="3.4" ry="4.5" fill="#fffaf0"/>
+  <ellipse cx="78" cy="71" rx="3.4" ry="4.5" fill="#fffaf0"/>
+  <path fill="#0c241e" d="M57 84c3-4 11-4 14 0l-7 7-7-7Z"/>
+  <path fill="none" stroke="#0c241e" stroke-linecap="round" stroke-width="2.5" d="M64 91c-4 6-11 7-16 3m16-3c4 6 11 7 16 3"/>
+
+  <path fill="#d8b66a" d="m20 77 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L20 77Zm88 0 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L108 77Z"/>
 </svg>
