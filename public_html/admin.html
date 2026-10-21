@@ -90,24 +90,95 @@
 
             <section class="dashboard-panel dashboard-panel-wide" aria-labelledby="kpi-heading">
                 <h3 class="section-heading" id="kpi-heading">Operational KPI Statistics Dashboard</h3>
-                <p class="section-description">Resumo dos principais indicadores operacionais.</p>
+                <p class="section-description">Resumo dos principais indicadores operacionais. Valores ilustrativos para demonstração.</p>
                 <div class="kpi-grid">
                     <article class="kpi-card">
-                        <p class="kpi-label">Total de estafetas</p>
-                        <p class="kpi-value">128</p>
+                        <p class="kpi-label">Encomendas hoje</p>
+                        <p class="kpi-value">248</p>
                     </article>
                     <article class="kpi-card">
-                        <p class="kpi-label">Rotas ativas</p>
+                        <p class="kpi-label">Entregas em curso</p>
                         <p class="kpi-value">36</p>
                     </article>
                     <article class="kpi-card">
-                        <p class="kpi-label">Membros da equipa</p>
-                        <p class="kpi-value">14</p>
+                        <p class="kpi-label">Concluídas hoje</p>
+                        <p class="kpi-value">192</p>
                     </article>
                     <article class="kpi-card">
-                        <p class="kpi-label">Clientes</p>
-                        <p class="kpi-value">842</p>
+                        <p class="kpi-label">Entregas dentro do prazo</p>
+                        <p class="kpi-value">94%</p>
                     </article>
+                    <article class="kpi-card">
+                        <p class="kpi-label">Estafetas disponíveis</p>
+                        <p class="kpi-value">18</p>
+                    </article>
+                    <article class="kpi-card">
+                        <p class="kpi-label">Aprovações pendentes</p>
+                        <p class="kpi-value">2</p>
+                    </article>
+                </div>
+                <div class="analytics-grid">
+                    <figure class="chart-card" aria-labelledby="orders-chart-title">
+                        <figcaption>
+                            <h4 id="orders-chart-title">Volume de encomendas</h4>
+                            <p>Últimos 7 dias · valores ilustrativos</p>
+                        </figcaption>
+                        <ol class="bar-chart" aria-label="Encomendas por dia">
+                            <li>
+                                <span class="bar-value">182</span>
+                                <span class="bar-track"><span class="bar-fill" style="--bar-height: 58%"></span></span>
+                                <span class="bar-label">Seg</span>
+                            </li>
+                            <li>
+                                <span class="bar-value">215</span>
+                                <span class="bar-track"><span class="bar-fill" style="--bar-height: 69%"></span></span>
+                                <span class="bar-label">Ter</span>
+                            </li>
+                            <li>
+                                <span class="bar-value">198</span>
+                                <span class="bar-track"><span class="bar-fill" style="--bar-height: 63%"></span></span>
+                                <span class="bar-label">Qua</span>
+                            </li>
+                            <li>
+                                <span class="bar-value">246</span>
+                                <span class="bar-track"><span class="bar-fill" style="--bar-height: 79%"></span></span>
+                                <span class="bar-label">Qui</span>
+                            </li>
+                            <li>
+                                <span class="bar-value">221</span>
+                                <span class="bar-track"><span class="bar-fill" style="--bar-height: 71%"></span></span>
+                                <span class="bar-label">Sex</span>
+                            </li>
+                            <li>
+                                <span class="bar-value">312</span>
+                                <span class="bar-track"><span class="bar-fill bar-fill-highlight" style="--bar-height: 100%"></span></span>
+                                <span class="bar-label">Sáb</span>
+                            </li>
+                            <li>
+                                <span class="bar-value">248</span>
+                                <span class="bar-track"><span class="bar-fill" style="--bar-height: 79%"></span></span>
+                                <span class="bar-label">Dom</span>
+                            </li>
+                        </ol>
+                    </figure>
+                    <figure class="chart-card" aria-labelledby="status-chart-title">
+                        <figcaption>
+                            <h4 id="status-chart-title">Estado das encomendas</h4>
+                            <p>Distribuição atual · valores ilustrativos</p>
+                        </figcaption>
+                        <div class="status-chart" role="img" aria-label="Distribuição: 77% concluídas, 15% em curso, 6% pendentes e 2% canceladas">
+                            <span class="status-segment status-completed" style="--segment-size: 77.4%"></span>
+                            <span class="status-segment status-progress" style="--segment-size: 14.5%"></span>
+                            <span class="status-segment status-pending" style="--segment-size: 5.6%"></span>
+                            <span class="status-segment status-cancelled" style="--segment-size: 2.5%"></span>
+                        </div>
+                        <ul class="chart-legend">
+                            <li><span class="legend-swatch status-completed"></span><span>Concluídas</span><strong>192 · 77%</strong></li>
+                            <li><span class="legend-swatch status-progress"></span><span>Em curso</span><strong>36 · 15%</strong></li>
+                            <li><span class="legend-swatch status-pending"></span><span>Pendentes</span><strong>14 · 6%</strong></li>
+                            <li><span class="legend-swatch status-cancelled"></span><span>Canceladas</span><strong>6 · 2%</strong></li>
+                        </ul>
+                    </figure>
                 </div>
             </section>
         </div>
