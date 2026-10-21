@@ -13,6 +13,10 @@
         <nav class="site-nav" aria-label="Navegação principal">
             <a href="index.html">Home</a>
             <a href="login.html">Login</a>
+            <a href="client.html">Client</a>
+            <a href="courier.html">Courier</a>
+            <a href="staff.html">Staff</a>
+            <a href="admin.html" aria-current="page">Admin</a>
             <a href="team.html">Team</a>
         </nav>
     </header>
@@ -101,6 +105,10 @@
                         <p class="kpi-label">Membros da equipa</p>
                         <p class="kpi-value">14</p>
                     </article>
+                    <article class="kpi-card">
+                        <p class="kpi-label">Clientes</p>
+                        <p class="kpi-value">842</p>
+                    </article>
                 </div>
             </section>
         </div>
@@ -109,5 +117,24 @@
     <footer class="site-footer">
         <p>&copy; 2026 Courier Management System - Sprint 1</p>
     </footer>
+    <script>
+        const personalInfoForm = document.getElementById('personal-info-form');
+        const personalInfoAlert = document.createElement('div');
+        personalInfoAlert.className = 'form-alert';
+        personalInfoAlert.setAttribute('role', 'status');
+        personalInfoAlert.setAttribute('aria-live', 'polite');
+        personalInfoForm.prepend(personalInfoAlert);
+        personalInfoForm.querySelectorAll('input').forEach((input) => {
+            input.required = true;
+        });
+        personalInfoForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!personalInfoForm.reportValidity()) {
+                return;
+            }
+            personalInfoAlert.textContent = 'Dados validados. A gravação será disponibilizada quando o serviço estiver ligado.';
+            personalInfoAlert.dataset.state = 'success';
+        });
+    </script>
 </body>
 </html>

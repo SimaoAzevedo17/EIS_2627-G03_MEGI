@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Submeta os detalhes de um produto e da respetiva encomenda.">
-    <title>Submeter Encomenda | Courier Management System</title>
+    <meta name="description" content="Submeta os detalhes de uma encomenda, produtos e coordenadas GPS.">
+    <title>Área de Cliente | Courier Management System</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
@@ -15,6 +15,10 @@
         <nav class="site-nav" aria-label="Navegação principal">
             <a href="index.html">Home</a>
             <a href="login.html">Login</a>
+            <a href="client.html" aria-current="page">Client</a>
+            <a href="courier.html">Courier</a>
+            <a href="staff.html">Staff</a>
+            <a href="admin.html">Admin</a>
             <a href="team.html">Team</a>
         </nav>
     </header>
@@ -22,40 +26,20 @@
     <main class="page-main">
         <div class="intro">
             <h2>Área de Cliente</h2>
-            <p>Registe os detalhes do produto e os pontos de origem e destino da encomenda.</p>
+            <p>Crie uma encomenda com um ou mais produtos e indique a origem e o destino.</p>
         </div>
 
-        <section class="auth-card client-card" aria-labelledby="submission-heading">
+        <section class="dashboard-panel" aria-labelledby="submission-heading">
             <h3 class="section-heading" id="submission-heading">Order &amp; Product Submission</h3>
-            <p class="section-description">Todos os campos são obrigatórios. As coordenadas devem ser valores numéricos.</p>
-
+            <p class="section-description">Cada encomenda pode conter vários produtos. As coordenadas devem estar dentro dos limites GPS.</p>
             <form id="order-form" novalidate>
                 <div class="form-alert" id="order-alert" role="alert" aria-live="polite"></div>
+                <fieldset class="product-fieldset">
+                    <legend>Produtos da encomenda</legend>
+                    <div id="product-list"></div>
+                    <button class="secondary-button" id="add-product" type="button">Adicionar produto</button>
+                </fieldset>
                 <div class="form-grid">
-                    <div class="field field-full">
-                        <label for="product-description">Descrição do produto <span class="required-mark" aria-hidden="true">*</span></label>
-                        <input id="product-description" name="description" type="text" required
-                               aria-describedby="product-description-error">
-                        <p class="field-error" id="product-description-error"></p>
-                    </div>
-                    <div class="field">
-                        <label for="product-category">Categoria <span class="required-mark" aria-hidden="true">*</span></label>
-                        <input id="product-category" name="category" type="text" required
-                               aria-describedby="product-category-error">
-                        <p class="field-error" id="product-category-error"></p>
-                    </div>
-                    <div class="field">
-                        <label for="product-weight">Peso (kg) <span class="required-mark" aria-hidden="true">*</span></label>
-                        <input id="product-weight" name="weight_kg" type="number" min="0" step="any" required
-                               aria-describedby="product-weight-error">
-                        <p class="field-error" id="product-weight-error"></p>
-                    </div>
-                    <div class="field">
-                        <label for="product-volume">Volume (m³) <span class="required-mark" aria-hidden="true">*</span></label>
-                        <input id="product-volume" name="volume_m3" type="number" min="0" step="any" required
-                               aria-describedby="product-volume-error">
-                        <p class="field-error" id="product-volume-error"></p>
-                    </div>
                     <div class="field">
                         <label for="origin-lat">Latitude de origem <span class="required-mark" aria-hidden="true">*</span></label>
                         <input id="origin-lat" name="origin_lat" type="text" inputmode="decimal" required
@@ -88,9 +72,32 @@
         </section>
 
         <section class="map-section" aria-labelledby="map-heading">
-            <h3 class="section-heading" id="map-heading">Mapa de localização</h3>
-            <p class="section-description">Localização de referência para o protótipo: FEUP, Porto.</p>
-            <div class="map-container" id="order-map" role="region" aria-label="Mapa OpenStreetMap com marcador na FEUP"></div>
+            <h3 class="section-heading" id="map-heading">Mapa de origem e destino</h3>
+            <p class="section-description">Introduza as coordenadas para posicionar os marcadores e visualizar o trajeto.</p>
+            <div class="map-container" id="order-map" role="region" aria-label="Mapa OpenStreetMap da rota da encomenda"></div>
+        </section>
+
+        <section class="courier-section" aria-labelledby="active-orders-heading">
+            <h3 class="section-heading" id="active-orders-heading">Encomendas ativas</h3>
+            <p class="section-description">As encomendas criadas nesta demonstração aparecem aqui.</p>
+            <div class="order-list" id="active-orders" aria-live="polite">
+                <p id="no-active-orders">Ainda não existem encomendas criadas nesta página.</p>
+            </div>
+        </section>
+
+        <section class="courier-section" aria-labelledby="history-heading">
+            <h3 class="section-heading" id="history-heading">Histórico de encomendas concluídas</h3>
+            <div class="table-wrapper">
+                <table class="orders-table">
+                    <thead>
+                        <tr><th scope="col">Encomenda</th><th scope="col">Destino</th><th scope="col">Data</th><th scope="col">Estado</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>#CMS-1042</td><td>Rua de Santa Catarina, Porto</td><td>20/10/2026</td><td class="order-status-completed">Completed</td></tr>
+                        <tr><td>#CMS-1038</td><td>Boavista, Porto</td><td>19/10/2026</td><td class="order-status-completed">Completed</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
@@ -101,21 +108,66 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
-        const feupCoordinates = [41.1778, -8.5980];
-        const map = L.map('order-map').setView(feupCoordinates, 15);
+        const referenceCoordinates = [41.1778, -8.5980];
+        const orderMap = L.map('order-map').setView(referenceCoordinates, 14);
+        const routeLayer = L.featureGroup().addTo(orderMap);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker(feupCoordinates).addTo(map).bindPopup('FEUP, Porto').openPopup();
+        }).addTo(orderMap);
+        L.marker(referenceCoordinates).addTo(routeLayer).bindPopup('FEUP — localização de referência');
 
         const orderForm = document.getElementById('order-form');
         const orderAlert = document.getElementById('order-alert');
-        const requiredFields = Array.from(orderForm.querySelectorAll('[required]'));
-        const coordinateNames = new Set(['origin_lat', 'origin_long', 'dest_lat', 'dest_long']);
+        const productList = document.getElementById('product-list');
+        const activeOrders = document.getElementById('active-orders');
         const numericPattern = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/;
+        let productCount = 0;
+        let orderCount = 1043;
+
+        function addProduct() {
+            const index = productCount++;
+            const entry = document.createElement('div');
+            entry.className = 'product-entry';
+            entry.innerHTML = `
+                <div class="field">
+                    <label for="product-description-${index}">Descrição *</label>
+                    <input id="product-description-${index}" name="products[${index}][description]" type="text" required aria-describedby="product-description-error-${index}">
+                    <p class="field-error" id="product-description-error-${index}"></p>
+                </div>
+                <div class="field">
+                    <label for="product-category-${index}">Categoria *</label>
+                    <input id="product-category-${index}" name="products[${index}][category]" type="text" required aria-describedby="product-category-error-${index}">
+                    <p class="field-error" id="product-category-error-${index}"></p>
+                </div>
+                <div class="field">
+                    <label for="product-weight-${index}">Peso (kg) *</label>
+                    <input id="product-weight-${index}" name="products[${index}][weight_kg]" type="number" min="0.01" step="any" required aria-describedby="product-weight-error-${index}">
+                    <p class="field-error" id="product-weight-error-${index}"></p>
+                </div>
+                <div class="field">
+                    <label for="product-volume-${index}">Volume (m³) *</label>
+                    <input id="product-volume-${index}" name="products[${index}][volume_m3]" type="number" min="0.01" step="any" required aria-describedby="product-volume-error-${index}">
+                    <p class="field-error" id="product-volume-error-${index}"></p>
+                </div>
+                <div class="field">
+                    <label for="product-quantity-${index}">Quantidade *</label>
+                    <input id="product-quantity-${index}" name="products[${index}][quantity]" type="number" min="1" step="1" value="1" required aria-describedby="product-quantity-error-${index}">
+                    <p class="field-error" id="product-quantity-error-${index}"></p>
+                </div>
+                <button class="secondary-button remove-product" type="button" aria-label="Remover produto ${index + 1}">Remover</button>
+            `;
+            entry.querySelector('.remove-product').addEventListener('click', () => {
+                if (productList.children.length === 1) {
+                    orderAlert.textContent = 'Uma encomenda deve incluir pelo menos um produto.';
+                    orderAlert.dataset.state = 'error';
+                    return;
+                }
+                entry.remove();
+            });
+            productList.append(entry);
+        }
 
         function validateField(field) {
             const error = document.getElementById(field.getAttribute('aria-describedby'));
@@ -124,8 +176,12 @@
 
             if (!value) {
                 message = 'Este campo é obrigatório.';
-            } else if (coordinateNames.has(field.name) && !numericPattern.test(value)) {
-                message = 'Introduza um valor numérico válido.';
+            } else if (['origin_lat', 'dest_lat'].includes(field.name)
+                    && (!numericPattern.test(value) || Number(value) < -90 || Number(value) > 90)) {
+                message = 'Introduza uma latitude numérica entre -90 e 90.';
+            } else if (['origin_long', 'dest_long'].includes(field.name)
+                    && (!numericPattern.test(value) || Number(value) < -180 || Number(value) > 180)) {
+                message = 'Introduza uma longitude numérica entre -180 e 180.';
             } else if (!field.checkValidity()) {
                 message = field.validationMessage || 'Introduza um valor válido.';
             }
@@ -135,18 +191,34 @@
             return !message;
         }
 
-        requiredFields.forEach((field) => {
-            field.addEventListener('input', () => {
-                validateField(field);
+        function updateMap(origin, destination) {
+            routeLayer.clearLayers();
+            L.marker(origin).addTo(routeLayer).bindPopup('Origem');
+            L.marker(destination).addTo(routeLayer).bindPopup('Destino');
+            L.polyline([origin, destination], { color: '#004080', weight: 4 }).addTo(routeLayer);
+            orderMap.fitBounds(routeLayer.getBounds(), { padding: [24, 24] });
+        }
+
+        document.getElementById('add-product').addEventListener('click', addProduct);
+        addProduct();
+
+        orderForm.addEventListener('input', (event) => {
+            if (event.target.matches('[required]')) {
+                validateField(event.target);
                 orderAlert.textContent = '';
                 orderAlert.removeAttribute('data-state');
-            });
-            field.addEventListener('change', () => validateField(field));
+            }
+        });
+        orderForm.addEventListener('change', (event) => {
+            if (event.target.matches('[required]')) {
+                validateField(event.target);
+            }
         });
 
         orderForm.addEventListener('submit', (event) => {
             event.preventDefault();
-            const isValid = requiredFields.map(validateField).every(Boolean);
+            const fields = Array.from(orderForm.querySelectorAll('[required]'));
+            const isValid = fields.map(validateField).every(Boolean);
 
             if (!isValid) {
                 orderAlert.textContent = 'Verifique os campos assinalados antes de submeter a encomenda.';
@@ -155,7 +227,34 @@
                 return;
             }
 
-            orderAlert.textContent = 'Dados validados. A submissão estará disponível quando o serviço estiver ligado.';
+            const origin = [
+                Number(orderForm.elements.origin_lat.value),
+                Number(orderForm.elements.origin_long.value)
+            ];
+            const destination = [
+                Number(orderForm.elements.dest_lat.value),
+                Number(orderForm.elements.dest_long.value)
+            ];
+            updateMap(origin, destination);
+
+            const productSummary = Array.from(productList.querySelectorAll('.product-entry'), (entry) => {
+                const values = Array.from(entry.querySelectorAll('input'), (input) => input.value.trim());
+                return `${values[0]} × ${values[4]}`;
+            }).join(', ');
+
+            document.getElementById('no-active-orders')?.remove();
+            const orderCard = document.createElement('article');
+            orderCard.className = 'order-card';
+            const heading = document.createElement('h4');
+            heading.textContent = `#CMS-${orderCount++} — Initiated`;
+            const products = document.createElement('p');
+            products.textContent = `Produtos: ${productSummary}`;
+            const route = document.createElement('p');
+            route.textContent = `Origem: ${origin.join(', ')} · Destino: ${destination.join(', ')}`;
+            orderCard.append(heading, products, route);
+            activeOrders.prepend(orderCard);
+
+            orderAlert.textContent = 'Dados validados. A encomenda foi adicionada à lista de demonstração desta sessão.';
             orderAlert.dataset.state = 'success';
         });
     </script>

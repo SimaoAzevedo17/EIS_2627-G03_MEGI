@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Painel de estafeta para gerir entregas e comprovativos de entrega.">
+    <meta name="description" content="Painel de estafeta para gerir entregas, rotas e provas de entrega.">
     <title>Painel do Estafeta | Courier Management System</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -15,6 +15,10 @@
         <nav class="site-nav" aria-label="Navegação principal">
             <a href="index.html">Home</a>
             <a href="login.html">Login</a>
+            <a href="client.html">Client</a>
+            <a href="courier.html" aria-current="page">Courier</a>
+            <a href="staff.html">Staff</a>
+            <a href="admin.html">Admin</a>
             <a href="team.html">Team</a>
         </nav>
     </header>
@@ -22,12 +26,12 @@
     <main class="page-main">
         <div class="intro">
             <h2>Painel do Estafeta</h2>
-            <p>Consulte a rota e atualize o estado das suas entregas.</p>
+            <p>Consulte a rota e atualize o estado da encomenda de demonstração.</p>
         </div>
 
         <section class="courier-section" aria-labelledby="vehicle-heading">
             <h3 class="section-heading" id="vehicle-heading">Active Vehicle Selector</h3>
-            <p class="section-description">Selecione o veículo que está a utilizar nesta rota.</p>
+            <p class="section-description">Selecione um veículo registado para esta rota.</p>
             <div class="field">
                 <label for="active-vehicle">Veículo ativo</label>
                 <select class="vehicle-select" id="active-vehicle" name="active_vehicle">
@@ -40,31 +44,24 @@
 
         <section class="courier-section" aria-labelledby="courier-map-heading">
             <h3 class="section-heading" id="courier-map-heading">Map Visualization</h3>
-            <p class="section-description">Localização de referência para o protótipo: FEUP, Porto.</p>
-            <div class="map-container" id="courier-map" role="region"
-                 aria-label="Mapa OpenStreetMap com marcador na FEUP"></div>
+            <p class="section-description">Rota de demonstração: um marcador de referência e um trajeto ilustrativo.</p>
+            <div class="map-container" id="courier-map" role="region" aria-label="Mapa OpenStreetMap com rota ilustrativa da FEUP"></div>
         </section>
 
         <section class="courier-section" aria-labelledby="status-heading">
             <h3 class="section-heading" id="status-heading">Order Status Controls</h3>
-            <p class="status-summary">Estado da encomenda: <strong id="order-status" aria-live="polite">Initiated</strong></p>
-            <div class="status-actions" id="status-actions">
-                <button class="status-button status-button-primary" id="start-order" type="button">
-                    In Progress
-                </button>
-                <button class="status-button status-button-primary" id="complete-order" type="button" hidden>
-                    Completed
-                </button>
-                <button class="status-button status-button-danger" id="cancel-order" type="button" hidden>
-                    Cancelled
-                </button>
+            <p class="status-summary">Encomenda <strong>#CMS-1043</strong> — estado: <strong id="order-status" aria-live="polite">Initiated</strong></p>
+            <div class="status-actions">
+                <button class="status-button status-button-primary" id="start-order" type="button">In Progress</button>
+                <button class="status-button status-button-primary" id="complete-order" type="button" hidden>Completed</button>
+                <button class="status-button status-button-danger" id="cancel-order" type="button" hidden>Cancelled</button>
             </div>
         </section>
 
         <section class="courier-section" id="epod-section" aria-labelledby="epod-heading" hidden>
             <h3 class="section-heading" id="epod-heading">e-POD Simulator — Proof of Delivery</h3>
-            <p class="section-description">Assine no espaço abaixo e, opcionalmente, selecione uma fotografia da entrega.</p>
-            <label class="field label" for="signature-canvas">Assinatura digital</label>
+            <p class="section-description">Para concluir, submeta uma assinatura digital ou uma fotografia da entrega.</p>
+            <label class="field label" for="signature-canvas">Assinatura digital (opcional se anexar foto)</label>
             <canvas class="signature-canvas" id="signature-canvas" width="700" height="220"
                     tabindex="0" aria-label="Área para desenhar a assinatura">
                 O seu navegador não suporta a área de assinatura.
@@ -73,43 +70,33 @@
                 <button class="secondary-button" id="clear-signature" type="button">Limpar assinatura</button>
             </div>
             <label class="photo-upload" for="delivery-photo">
-                Fotografia da entrega (simulador)
+                Fotografia da entrega (opcional se existir assinatura)
                 <input id="delivery-photo" name="delivery_photo" type="file" accept="image/*">
             </label>
+            <p class="signature-status" id="epod-feedback" role="status" aria-live="polite"></p>
+            <button class="primary-button" id="submit-epod" type="button">Submeter prova e concluir</button>
+        </section>
+
+        <section class="courier-section" id="returned-orders" aria-labelledby="returned-heading" hidden>
+            <h3 class="section-heading" id="returned-heading">Encomendas devolvidas à lista</h3>
+            <div class="table-wrapper">
+                <table class="orders-table">
+                    <thead><tr><th scope="col">Encomenda</th><th scope="col">Estado</th><th scope="col">Nota</th></tr></thead>
+                    <tbody id="returned-orders-body"></tbody>
+                </table>
+            </div>
         </section>
 
         <section class="courier-section" aria-labelledby="completed-heading">
             <h3 class="section-heading" id="completed-heading">Completed Orders List</h3>
-            <p class="section-description">Histórico de encomendas concluídas.</p>
+            <p class="section-description">Histórico de encomendas concluídas de demonstração.</p>
             <div class="table-wrapper">
                 <table class="orders-table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Encomenda</th>
-                            <th scope="col">Destino</th>
-                            <th scope="col">Data</th>
-                            <th scope="col">Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>#CMS-1042</td>
-                            <td>Rua de Santa Catarina, Porto</td>
-                            <td>20/10/2026</td>
-                            <td class="order-status-completed">Completed</td>
-                        </tr>
-                        <tr>
-                            <td>#CMS-1038</td>
-                            <td>Boavista, Porto</td>
-                            <td>19/10/2026</td>
-                            <td class="order-status-completed">Completed</td>
-                        </tr>
-                        <tr>
-                            <td>#CMS-1031</td>
-                            <td>Matosinhos</td>
-                            <td>18/10/2026</td>
-                            <td class="order-status-completed">Completed</td>
-                        </tr>
+                    <thead><tr><th scope="col">Encomenda</th><th scope="col">Destino</th><th scope="col">Data</th><th scope="col">Estado</th></tr></thead>
+                    <tbody id="completed-orders-body">
+                        <tr><td>#CMS-1042</td><td>Rua de Santa Catarina, Porto</td><td>20/10/2026</td><td class="order-status-completed">Completed</td></tr>
+                        <tr><td>#CMS-1038</td><td>Boavista, Porto</td><td>19/10/2026</td><td class="order-status-completed">Completed</td></tr>
+                        <tr><td>#CMS-1031</td><td>Matosinhos</td><td>18/10/2026</td><td class="order-status-completed">Completed</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -124,20 +111,27 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         const feupCoordinates = [41.1778, -8.5980];
-        const courierMap = L.map('courier-map').setView(feupCoordinates, 15);
+        const sampleDestination = [41.1496, -8.6109];
+        const courierMap = L.map('courier-map').setView(feupCoordinates, 14);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(courierMap);
-
-        L.marker(feupCoordinates).addTo(courierMap).bindPopup('FEUP, Porto').openPopup();
+        L.marker(feupCoordinates).addTo(courierMap).bindPopup('FEUP — origem de referência');
+        L.polyline([feupCoordinates, sampleDestination], { color: '#004080', weight: 4 }).addTo(courierMap);
 
         const orderStatus = document.getElementById('order-status');
         const startOrderButton = document.getElementById('start-order');
         const completeOrderButton = document.getElementById('complete-order');
         const cancelOrderButton = document.getElementById('cancel-order');
         const epodSection = document.getElementById('epod-section');
+        const epodFeedback = document.getElementById('epod-feedback');
+        const signatureCanvas = document.getElementById('signature-canvas');
+        const signatureContext = signatureCanvas.getContext('2d');
+        const photoInput = document.getElementById('delivery-photo');
+        let drawing = false;
+        let hasSignature = false;
 
         startOrderButton.addEventListener('click', () => {
             orderStatus.textContent = 'In Progress';
@@ -147,11 +141,10 @@
         });
 
         completeOrderButton.addEventListener('click', () => {
-            orderStatus.textContent = 'Completed';
+            orderStatus.textContent = 'Proof of Delivery Required';
             completeOrderButton.disabled = true;
-            cancelOrderButton.disabled = true;
             epodSection.hidden = false;
-            document.getElementById('signature-canvas').focus();
+            signatureCanvas.focus();
         });
 
         cancelOrderButton.addEventListener('click', () => {
@@ -160,11 +153,13 @@
             cancelOrderButton.hidden = true;
             startOrderButton.hidden = true;
             epodSection.hidden = true;
-        });
 
-        const signatureCanvas = document.getElementById('signature-canvas');
-        const signatureContext = signatureCanvas.getContext('2d');
-        let drawing = false;
+            const returnedOrders = document.getElementById('returned-orders');
+            const row = document.createElement('tr');
+            row.innerHTML = '<td>#CMS-1043</td><td>Cancelled</td><td>Devolvida à lista de encomendas.</td>';
+            document.getElementById('returned-orders-body').prepend(row);
+            returnedOrders.hidden = false;
+        });
 
         function getCanvasPoint(event) {
             const bounds = signatureCanvas.getBoundingClientRect();
@@ -176,17 +171,23 @@
 
         signatureCanvas.addEventListener('pointerdown', (event) => {
             drawing = true;
+            hasSignature = true;
             signatureCanvas.setPointerCapture(event.pointerId);
             const point = getCanvasPoint(event);
             signatureContext.beginPath();
+            signatureContext.arc(point.x, point.y, 1, 0, Math.PI * 2);
+            signatureContext.fillStyle = '#1d2939';
+            signatureContext.fill();
+            signatureContext.beginPath();
             signatureContext.moveTo(point.x, point.y);
+            epodFeedback.textContent = '';
+            epodFeedback.removeAttribute('data-state');
         });
 
         signatureCanvas.addEventListener('pointermove', (event) => {
             if (!drawing) {
                 return;
             }
-
             const point = getCanvasPoint(event);
             signatureContext.lineTo(point.x, point.y);
             signatureContext.strokeStyle = '#1d2939';
@@ -196,15 +197,38 @@
             signatureContext.stroke();
         });
 
-        signatureCanvas.addEventListener('pointerup', () => {
-            drawing = false;
-        });
-        signatureCanvas.addEventListener('pointercancel', () => {
-            drawing = false;
-        });
+        signatureCanvas.addEventListener('pointerup', () => { drawing = false; });
+        signatureCanvas.addEventListener('pointercancel', () => { drawing = false; });
 
         document.getElementById('clear-signature').addEventListener('click', () => {
             signatureContext.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+            hasSignature = false;
+        });
+
+        photoInput.addEventListener('change', () => {
+            if (photoInput.files.length > 0 && !photoInput.files[0].type.startsWith('image/')) {
+                photoInput.value = '';
+                epodFeedback.textContent = 'Selecione um ficheiro de imagem válido.';
+                epodFeedback.dataset.state = 'error';
+            }
+        });
+
+        document.getElementById('submit-epod').addEventListener('click', () => {
+            if (!hasSignature && photoInput.files.length === 0) {
+                epodFeedback.textContent = 'Desenhe uma assinatura ou selecione uma fotografia antes de concluir.';
+                epodFeedback.dataset.state = 'error';
+                return;
+            }
+
+            orderStatus.textContent = 'Completed';
+            epodFeedback.textContent = 'Prova registada na demonstração; encomenda concluída.';
+            epodFeedback.dataset.state = 'success';
+            epodSection.hidden = true;
+            completeOrderButton.hidden = true;
+            cancelOrderButton.hidden = true;
+            const row = document.createElement('tr');
+            row.innerHTML = '<td>#CMS-1043</td><td>Porto (destino de demonstração)</td><td>21/10/2026</td><td class="order-status-completed">Completed</td>';
+            document.getElementById('completed-orders-body').prepend(row);
         });
     </script>
 </body>

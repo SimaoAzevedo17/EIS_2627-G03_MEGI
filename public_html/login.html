@@ -13,6 +13,10 @@
         <nav class="site-nav" aria-label="Navegação principal">
             <a href="index.html">Home</a>
             <a href="login.html" aria-current="page">Login</a>
+            <a href="client.html">Client</a>
+            <a href="courier.html">Courier</a>
+            <a href="staff.html">Staff</a>
+            <a href="admin.html">Admin</a>
             <a href="team.html">Team</a>
         </nav>
     </header>
@@ -33,7 +37,7 @@
 
             <section class="form-panel" id="login-panel" role="tabpanel" aria-labelledby="login-tab">
                 <h3 class="form-heading">Bem-vindo de volta</h3>
-                <p class="form-description">Introduza as suas credenciais para continuar.</p>
+                <p class="form-description">Este protótipo não tem autenticação ligada: escolha um perfil para abrir a respetiva página de demonstração.</p>
                 <form id="login-form" novalidate>
                     <div class="form-alert" id="login-alert" role="alert" aria-live="polite"></div>
                     <div class="form-grid">
@@ -50,7 +54,18 @@
                             <p class="field-error" id="login-password-error"></p>
                         </div>
                         <div class="field field-full">
-                            <button class="primary-button" type="submit">Iniciar sessão</button>
+                            <label for="login-role">Perfil de demonstração <span class="required-mark" aria-hidden="true">*</span></label>
+                            <select id="login-role" name="role" required aria-describedby="login-role-error">
+                                <option value="">Selecione um perfil</option>
+                                <option value="client.html">Client</option>
+                                <option value="courier.html">Courier</option>
+                                <option value="staff.html">Staff</option>
+                                <option value="admin.html">Admin</option>
+                            </select>
+                            <p class="field-error" id="login-role-error"></p>
+                        </div>
+                        <div class="field field-full">
+                            <button class="primary-button" type="submit">Abrir demonstração</button>
                         </div>
                     </div>
                 </form>
@@ -58,7 +73,7 @@
 
             <section class="form-panel" id="register-panel" role="tabpanel" aria-labelledby="register-tab" hidden>
                 <h3 class="form-heading">Criar conta</h3>
-                <p class="form-description">Preencha os seus dados para se registar na plataforma.</p>
+                <p class="form-description">Preencha os dados do utilizador definidos no modelo conceptual.</p>
                 <form id="register-form" novalidate>
                     <div class="form-alert" id="register-alert" role="alert" aria-live="polite"></div>
                     <div class="form-grid">
@@ -102,14 +117,15 @@
                             <label for="register-role">Função <span class="required-mark" aria-hidden="true">*</span></label>
                             <select id="register-role" name="role" required aria-describedby="register-role-error">
                                 <option value="">Selecione uma função</option>
-                                <option value="client">Cliente</option>
-                                <option value="courier">Estafeta</option>
-                                <option value="staff">Funcionário</option>
+                                <option value="client">Client</option>
+                                <option value="courier">Courier</option>
+                                <option value="staff">Staff</option>
+                                <option value="admin">Admin</option>
                             </select>
                             <p class="field-error" id="register-role-error"></p>
                         </div>
                         <div class="field field-full">
-                            <button class="primary-button" type="submit">Criar conta</button>
+                            <button class="primary-button" type="submit">Validar registo</button>
                         </div>
                     </div>
                 </form>
@@ -160,7 +176,9 @@
                 if (!field.value.trim()) {
                     message = 'Este campo é obrigatório.';
                 } else if (!field.checkValidity()) {
-                    message = 'Introduza um endereço de email válido.';
+                    message = field.type === 'email'
+                        ? 'Introduza um endereço de email válido.'
+                        : 'Selecione ou introduza um valor válido.';
                 }
 
                 error.textContent = message;
@@ -188,7 +206,12 @@
                     return;
                 }
 
-                alert.textContent = 'Dados validados. A submissão de contas estará disponível quando o serviço estiver ligado.';
+                if (form.id === 'login-form') {
+                    window.location.href = document.getElementById('login-role').value;
+                    return;
+                }
+
+                alert.textContent = 'Dados validados. O registo só ficará disponível quando o serviço estiver ligado.';
                 alert.dataset.state = 'success';
             });
         });
