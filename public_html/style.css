@@ -152,6 +152,50 @@
     padding: 0.4rem;
 }
 
+.gift-lid {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 380ms cubic-bezier(0.2, 0.75, 0.3, 1);
+}
+
+.hero-art.is-opening .gift-lid {
+    animation: gift-lid-open 520ms cubic-bezier(0.2, 0.75, 0.3, 1) forwards;
+}
+
+@media (hover: hover) {
+    .gift-box:hover .gift-lid {
+        transform: translateY(-17px) rotate(8deg);
+    }
+}
+
+@keyframes gift-lid-open {
+    0% {
+        transform: translate(0, 0) rotate(0);
+        opacity: 1;
+    }
+
+    45% {
+        transform: translate(0, -26px) rotate(10deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(42px, -155px) rotate(24deg);
+        opacity: 0;
+    }
+}
+
+.delivery-van {
+    animation: van-travel 4s ease-in-out infinite alternate;
+    transform-box: fill-box;
+}
+
+@keyframes van-travel {
+    to {
+        translate: 10px 0;
+    }
+}
+
 .delivery-illustration {
     display: block;
     width: 100%;
@@ -283,6 +327,18 @@ main,
         display: none;
         animation: none;
     }
+
+    .gift-lid,
+    .hero-art.is-opening .gift-lid {
+        animation: none;
+        transition: none;
+        transform: none;
+    }
+
+    .delivery-van {
+        animation: none;
+    }
+
 }
 
 .home-steps {
@@ -327,6 +383,40 @@ main,
     border-radius: 16px;
     background: rgba(255, 254, 250, 0.86);
     box-shadow: 0 8px 24px rgba(34, 57, 42, 0.045);
+}
+
+.home-steps.has-reveal .home-steps-intro,
+.home-steps.has-reveal .step-card {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 550ms ease, transform 550ms cubic-bezier(0.2, 0.75, 0.3, 1);
+}
+
+.home-steps.has-reveal .home-steps-intro {
+    transition-delay: 0ms;
+}
+
+.home-steps.has-reveal .step-card:nth-child(2) {
+    transition-delay: 100ms;
+}
+
+.home-steps.has-reveal .step-card:nth-child(3) {
+    transition-delay: 200ms;
+}
+
+.home-steps.has-reveal.is-visible .home-steps-intro,
+.home-steps.has-reveal.is-visible .step-card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-steps.has-reveal .home-steps-intro,
+    .home-steps.has-reveal .step-card {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }
 
 .step-number {

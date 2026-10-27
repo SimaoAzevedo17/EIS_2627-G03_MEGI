@@ -32,7 +32,7 @@
                 </div>
                 <p class="hero-note"><span aria-hidden="true">✓</span> Origem, destino e percurso num só lugar.</p>
             </div>
-            <div class="hero-art" aria-label="Ilustração de uma encomenda e do seu percurso" role="img">
+            <div class="hero-art">
                 <div class="art-sparkle art-sparkle-one" aria-hidden="true">✦</div>
                 <div class="art-sparkle art-sparkle-two" aria-hidden="true">✧</div>
                 <svg class="delivery-illustration" viewBox="0 0 520 420" aria-hidden="true" focusable="false">
@@ -42,12 +42,25 @@
                     <path d="M121 286c47-45 47-66 89-79 43-14 69 13 107-1 35-13 54-52 90-39" fill="none" stroke="#b93638" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 11"/>
                     <circle cx="121" cy="286" r="13" fill="#fffefa" stroke="#174c3b" stroke-width="5"/>
                     <circle cx="407" cy="167" r="13" fill="#fffefa" stroke="#b93638" stroke-width="5"/>
-                    <g transform="translate(217 174) rotate(-5 67 67)">
-                        <rect x="7" y="34" width="127" height="103" rx="13" fill="#174c3b"/>
-                        <path d="M7 53h127v12H7z" fill="#23634e"/>
-                        <path d="M58 34h25v103H58z" fill="#d8b66a"/>
-                        <path d="M70 34c-35-1-42-23-26-29 17-6 28 16 26 29Zm0 0c2-29 23-40 34-27 10 13-9 29-34 27Z" fill="none" stroke="#d8b66a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M58 137h25v11H58z" fill="#d8b66a"/>
+                    <g class="delivery-van" transform="translate(322 145)">
+                        <ellipse cx="27" cy="34" rx="26" ry="4" fill="#174c3b" opacity=".12"/>
+                        <path d="M3 10a4 4 0 0 1 4-4h22v21H3z" fill="#fffefa" stroke="#174c3b" stroke-width="2"/>
+                        <path d="M29 13h9l8 8v6H29z" fill="#f3e5e0" stroke="#174c3b" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M33 16h4l5 5h-9z" fill="#dce9dc"/>
+                        <path d="M7 11h17v10H7z" fill="#e8f0e9"/>
+                        <circle cx="12" cy="28" r="4" fill="#174c3b"/>
+                        <circle cx="37" cy="28" r="4" fill="#174c3b"/>
+                        <circle cx="12" cy="28" r="1.5" fill="#fffefa"/>
+                        <circle cx="37" cy="28" r="1.5" fill="#fffefa"/>
+                    </g>
+                    <g class="gift-box" transform="translate(217 174) rotate(-5 67 67)">
+                        <rect x="7" y="53" width="127" height="84" rx="10" fill="#174c3b"/>
+                        <path d="M58 53h25v84H58z" fill="#d8b66a"/>
+                        <g class="gift-lid">
+                            <rect x="7" y="34" width="127" height="24" rx="8" fill="#23634e"/>
+                            <path d="M58 34h25v24H58z" fill="#d8b66a"/>
+                            <path d="M70 36c-35-1-42-23-26-29 17-6 28 16 26 29Zm0 0c2-29 23-40 34-27 10 13-9 29-34 27Z" fill="none" stroke="#d8b66a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                        </g>
                     </g>
                     <g transform="translate(337 247)">
                         <rect width="158" height="55" rx="27.5" fill="#fffefa" stroke="#e1e4d9"/>
@@ -126,5 +139,41 @@
     <footer class="site-footer">
         <p>&copy; 2026 PandaExpress · Entregas com espírito de Natal</p>
     </footer>
+    <script>
+        const loginLink = document.querySelector('.hero-actions .primary-button');
+        const heroArt = document.querySelector('.hero-art');
+        let transitionStarted = false;
+
+        loginLink.addEventListener('click', (event) => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey
+                    || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                return;
+            }
+
+            event.preventDefault();
+            if (transitionStarted) {
+                return;
+            }
+
+            transitionStarted = true;
+            heroArt.classList.add('is-opening');
+            window.setTimeout(() => {
+                window.location.href = loginLink.href;
+            }, 560);
+        });
+
+        const homeSteps = document.querySelector('.home-steps');
+
+        if ('IntersectionObserver' in window) {
+            const stepObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    entry.target.classList.toggle('is-visible', entry.isIntersecting);
+                });
+            }, { threshold: 0.18, rootMargin: '0px 0px -30px 0px' });
+
+            homeSteps.classList.add('has-reveal');
+            stepObserver.observe(homeSteps);
+        }
+    </script>
 </body>
 </html>
