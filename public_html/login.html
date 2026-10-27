@@ -130,13 +130,13 @@
                         </div>
                         <div class="field">
                             <label for="register-phone">Telefone <span class="required-mark" aria-hidden="true">*</span></label>
-                            <input id="register-phone" name="phone" type="tel" autocomplete="tel"
+                            <input id="register-phone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]*" autocomplete="tel"
                                    required aria-describedby="register-phone-error">
                             <p class="field-error" id="register-phone-error"></p>
                         </div>
                         <div class="field">
                             <label for="register-nif">NIF <span class="required-mark" aria-hidden="true">*</span></label>
-                            <input id="register-nif" name="nif" type="text" inputmode="numeric"
+                            <input id="register-nif" name="nif" type="text" inputmode="numeric" pattern="[0-9]*"
                                    required aria-describedby="register-nif-error">
                             <p class="field-error" id="register-nif-error"></p>
                         </div>
@@ -221,6 +221,11 @@
 
                 if (!field.value.trim()) {
                     message = 'Este campo é obrigatório.';
+                } else if (form.id === 'register-form' && ['phone', 'nif'].includes(field.name)
+                        && !/^\d{9}$/.test(field.value.trim())) {
+                    message = field.name === 'phone'
+                        ? 'O número de telefone deve ter 9 dígitos.'
+                        : 'O NIF deve ter 9 dígitos.';
                 } else if (!field.checkValidity()) {
                     message = field.type === 'email'
                         ? 'Introduza um endereço de email válido.'
@@ -234,11 +239,25 @@
 
             fields.forEach((field) => {
                 field.addEventListener('input', () => {
-                    validateField(field);
+                    const isRegistrationNumber = form.id === 'register-form'
+                        && ['phone', 'nif'].includes(field.name);
+
+                    if (isRegistrationNumber) {
+                        field.value = field.value.replace(/\D/g, '');
+                        const error = document.getElementById(field.getAttribute('aria-describedby'));
+                        error.textContent = '';
+                        field.setAttribute('aria-invalid', 'false');
+                    } else {
+                        validateField(field);
+                    }
                     alert.textContent = '';
                     alert.removeAttribute('data-state');
                 });
-                field.addEventListener('change', () => validateField(field));
+                if (form.id === 'register-form' && ['phone', 'nif'].includes(field.name)) {
+                    field.addEventListener('blur', () => validateField(field));
+                } else {
+                    field.addEventListener('change', () => validateField(field));
+                }
             });
 
             form.addEventListener('submit', (event) => {
