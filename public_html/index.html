@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PandaExpress: gestão de entregas, frota e operações logísticas com espírito natalício.">
-    <title>PandaExpress | Entregas com espírito de Natal</title>
+    <meta name="description" content="Registe encomendas, indique a origem e o destino e consulte o percurso no mapa com a PandaExpress.">
+    <title>PandaExpress | Entregas simples e organizadas</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,32 +14,93 @@
             <span><strong>PandaExpress</strong><small>ENTREGAS · LOGÍSTICA</small></span>
         </a>
         <nav class="site-nav" aria-label="Navegação principal">
-            <a href="index.html" aria-current="page">Home</a>
-            <a href="login.html">Login</a>
-            <a href="team.html">Team</a>
+            <a href="index.html" aria-current="page">Início</a>
+            <a href="login.html">Entrar</a>
+            <a href="team.html">Equipa</a>
         </nav>
     </header>
 
     <main>
         <section class="hero">
-            <h2>O espírito de Natal chega à sua porta</h2>
-            <p>Na PandaExpress, cada encomenda leva um pouco de magia. Acompanhe as entregas e partilhe a alegria da época, do primeiro clique até à sua porta.</p>
-            <a href="login.html" class="primary-button">Aceder à plataforma</a>
+            <div class="hero-content">
+                <p class="hero-kicker"><span aria-hidden="true">✦</span> Entregas com espírito de Natal</p>
+                <h1>A sua encomenda, <span>com um toque natalício</span></h1>
+                <p class="hero-copy">Registe a encomenda, indique a origem e o destino e consulte o percurso no mapa. A PandaExpress ajuda a organizar cada entrega, do início ao fim.</p>
+                <div class="hero-actions">
+                    <a href="login.html" class="primary-button">Fazer uma encomenda <span aria-hidden="true">→</span></a>
+                    <a href="team.html" class="hero-secondary-link">Conheça a equipa</a>
+                </div>
+                <p class="hero-note"><span aria-hidden="true">✓</span> Origem, destino e percurso num só lugar.</p>
+            </div>
+            <div class="hero-art" aria-label="Ilustração de uma encomenda e do seu percurso" role="img">
+                <div class="art-sparkle art-sparkle-one" aria-hidden="true">✦</div>
+                <div class="art-sparkle art-sparkle-two" aria-hidden="true">✧</div>
+                <svg class="delivery-illustration" viewBox="0 0 520 420" aria-hidden="true" focusable="false">
+                    <path d="M75 310c36-57 26-115 79-151 45-31 80-18 126-51 49-36 108-22 156 17 42 34 31 77 19 112-14 40 14 67 5 103-13 51-65 61-120 51-54-10-89 9-145 1-59-8-148-25-120-82Z" fill="#e1eadc"/>
+                    <path d="M96 292c36-54 44-87 83-104 34-15 58-5 91-25 31-19 42-49 90-48 40 1 77 21 91 49 17 35-8 56-23 84-17 30 5 54-5 78-14 32-51 34-92 26-40-8-71 7-111 2-49-6-150-18-124-62Z" fill="#f3f0e5"/>
+                    <path d="M111 287c41-35 42-78 93-91 45-11 60 17 104-2 37-16 46-50 87-42 26 5 38 22 28 40-12 22-38 30-45 54-9 30 14 44 2 62-18 28-68 5-102 5-40 1-65 20-107 8-36-10-76-17-60-34Z" fill="none" stroke="#b8cdbb" stroke-width="4" stroke-linecap="round" stroke-dasharray="2 12"/>
+                    <path d="M121 286c47-45 47-66 89-79 43-14 69 13 107-1 35-13 54-52 90-39" fill="none" stroke="#b93638" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 11"/>
+                    <circle cx="121" cy="286" r="13" fill="#fffefa" stroke="#174c3b" stroke-width="5"/>
+                    <circle cx="407" cy="167" r="13" fill="#fffefa" stroke="#b93638" stroke-width="5"/>
+                    <g transform="translate(217 174) rotate(-5 67 67)">
+                        <rect x="7" y="34" width="127" height="103" rx="13" fill="#174c3b"/>
+                        <path d="M7 53h127v12H7z" fill="#23634e"/>
+                        <path d="M58 34h25v103H58z" fill="#d8b66a"/>
+                        <path d="M70 34c-35-1-42-23-26-29 17-6 28 16 26 29Zm0 0c2-29 23-40 34-27 10 13-9 29-34 27Z" fill="none" stroke="#d8b66a" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M58 137h25v11H58z" fill="#d8b66a"/>
+                    </g>
+                    <g transform="translate(337 247)">
+                        <rect width="158" height="55" rx="27.5" fill="#fffefa" stroke="#e1e4d9"/>
+                        <circle cx="28" cy="27.5" r="16" fill="#e8f0e9"/>
+                        <path d="M28 17v11l7 4" fill="none" stroke="#174c3b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <text x="53" y="24" fill="#69756d" font-family="Arial, sans-serif" font-size="10" font-weight="700">PEDIDO</text>
+                        <text x="53" y="39" fill="#174c3b" font-family="Arial, sans-serif" font-size="12" font-weight="700">em preparação</text>
+                    </g>
+                    <g transform="translate(96 92)">
+                        <circle cx="24" cy="24" r="24" fill="#fffefa"/>
+                        <path d="m24 10 3.8 9.2L38 23l-10.2 3.8L24 37l-3.8-10.2L10 23l10.2-3.8L24 10Z" fill="#d8b66a"/>
+                    </g>
+                    <g transform="translate(389 91)">
+                        <circle cx="17" cy="17" r="17" fill="#f3e5e0"/>
+                        <path d="M17 7v20M7 17h20M10 10l14 14m0-14L10 24" stroke="#b93638" stroke-width="2" stroke-linecap="round"/>
+                    </g>
+                </svg>
+                <div class="art-caption"><span class="art-caption-icon" aria-hidden="true">♥</span><span>Do início ao fim,<br><strong>conte connosco.</strong></span></div>
+            </div>
         </section>
 
-        <section class="home-metrics" aria-label="Indicadores do serviço">
-            <article class="home-metric">
-                <h3>+5000</h3>
-                <p>Encomendas entregues</p>
-            </article>
-            <article class="home-metric">
-                <h3>120</h3>
-                <p>Estafetas ativos</p>
-            </article>
-            <article class="home-metric">
-                <h3>+50</h3>
-                <p>Veículos na frota</p>
-            </article>
+        <section class="home-steps" aria-labelledby="home-steps-heading">
+            <div class="home-steps-intro">
+                <p class="section-kicker">Como funciona</p>
+                <h2 id="home-steps-heading">Uma entrega em três passos.</h2>
+                <p>Registe os dados e consulte o percurso da encomenda.</p>
+            </div>
+            <div class="steps-grid">
+                <article class="step-card">
+                    <span class="step-number">01</span>
+                    <div class="step-icon step-icon-package" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" focusable="false"><path d="m4 10 12-6 12 6v13l-12 6-12-6V10Z"/><path d="m4 10 12 6 12-6M16 16v13M10 7l12 6"/></svg>
+                    </div>
+                    <h3>Registe a encomenda</h3>
+                    <p>Adicione os produtos e indique os locais de origem e destino.</p>
+                </article>
+                <article class="step-card">
+                    <span class="step-number">02</span>
+                    <div class="step-icon step-icon-route" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" focusable="false"><path d="M7 25c0-5 9-5 9-10s9-5 9-10"/><circle cx="7" cy="25" r="3"/><circle cx="25" cy="5" r="3"/><path d="M20 25h7m-3-3 3 3-3 3"/></svg>
+                    </div>
+                    <h3>Consulte o percurso</h3>
+                    <p>Veja no mapa os pontos indicados e o trajeto entre eles.</p>
+                </article>
+                <article class="step-card">
+                    <span class="step-number">03</span>
+                    <div class="step-icon step-icon-smile" aria-hidden="true">
+                        <svg viewBox="0 0 32 32" focusable="false"><circle cx="16" cy="16" r="12"/><path d="M11 19c1.2 2 2.8 3 5 3s3.8-1 5-3m-9-6h.01M20 13h.01"/></svg>
+                    </div>
+                    <h3>Confirme os dados</h3>
+                    <p>Reveja as informações e valide a encomenda.</p>
+                </article>
+            </div>
         </section>
     </main>
 
