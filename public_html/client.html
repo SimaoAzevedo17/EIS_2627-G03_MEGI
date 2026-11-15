@@ -29,7 +29,7 @@
         </div>
 
         <section class="dashboard-panel" aria-labelledby="submission-heading">
-            <h3 class="section-heading" id="submission-heading">Order &amp; Product Submission</h3>
+            <h3 class="section-heading" id="submission-heading">Criar uma encomenda</h3>
             <p class="section-description">Cada encomenda pode conter vários produtos. As coordenadas devem estar dentro dos limites GPS.</p>
             <form id="order-form" novalidate>
                 <div class="form-alert" id="order-alert" role="alert" aria-live="polite"></div>
@@ -92,8 +92,8 @@
                         <tr><th scope="col">Encomenda</th><th scope="col">Destino</th><th scope="col">Data</th><th scope="col">Estado</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>#CMS-1042</td><td>Rua de Santa Catarina, Porto</td><td>20/10/2026</td><td class="order-status-completed">Completed</td></tr>
-                        <tr><td>#CMS-1038</td><td>Boavista, Porto</td><td>19/10/2026</td><td class="order-status-completed">Completed</td></tr>
+                        <tr><td>#CMS-1042</td><td>Rua de Santa Catarina, Porto</td><td>20/10/2026</td><td class="order-status-completed">Concluída</td></tr>
+                        <tr><td>#CMS-1038</td><td>Boavista, Porto</td><td>19/10/2026</td><td class="order-status-completed">Concluída</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -131,27 +131,27 @@
             entry.className = 'product-entry';
             entry.innerHTML = `
                 <div class="field">
-                    <label for="product-description-${index}">Descrição *</label>
+                    <label for="product-description-${index}">Descrição <span class="required-mark" aria-hidden="true">*</span></label>
                     <input id="product-description-${index}" name="products[${index}][description]" type="text" required aria-describedby="product-description-error-${index}">
                     <p class="field-error" id="product-description-error-${index}"></p>
                 </div>
                 <div class="field">
-                    <label for="product-category-${index}">Categoria *</label>
+                    <label for="product-category-${index}">Categoria <span class="required-mark" aria-hidden="true">*</span></label>
                     <input id="product-category-${index}" name="products[${index}][category]" type="text" required aria-describedby="product-category-error-${index}">
                     <p class="field-error" id="product-category-error-${index}"></p>
                 </div>
                 <div class="field">
-                    <label for="product-weight-${index}">Peso (kg) *</label>
+                    <label for="product-weight-${index}">Peso (kg) <span class="required-mark" aria-hidden="true">*</span></label>
                     <input id="product-weight-${index}" name="products[${index}][weight_kg]" type="number" min="0.01" step="any" required aria-describedby="product-weight-error-${index}">
                     <p class="field-error" id="product-weight-error-${index}"></p>
                 </div>
                 <div class="field">
-                    <label for="product-volume-${index}">Volume (m³) *</label>
+                    <label for="product-volume-${index}">Volume (m³) <span class="required-mark" aria-hidden="true">*</span></label>
                     <input id="product-volume-${index}" name="products[${index}][volume_m3]" type="number" min="0.01" step="any" required aria-describedby="product-volume-error-${index}">
                     <p class="field-error" id="product-volume-error-${index}"></p>
                 </div>
                 <div class="field">
-                    <label for="product-quantity-${index}">Quantidade *</label>
+                    <label for="product-quantity-${index}">Quantidade <span class="required-mark" aria-hidden="true">*</span></label>
                     <input id="product-quantity-${index}" name="products[${index}][quantity]" type="number" min="1" step="1" value="1" required aria-describedby="product-quantity-error-${index}">
                     <p class="field-error" id="product-quantity-error-${index}"></p>
                 </div>
@@ -245,7 +245,7 @@
             const orderCard = document.createElement('article');
             orderCard.className = 'order-card';
             const heading = document.createElement('h4');
-            heading.textContent = `#CMS-${orderCount++} — Initiated`;
+            heading.textContent = `#CMS-${orderCount++} — Iniciada`;
             const products = document.createElement('p');
             products.textContent = `Produtos: ${productSummary}`;
             const route = document.createElement('p');

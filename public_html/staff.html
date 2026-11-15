@@ -28,7 +28,7 @@
 
         <div class="dashboard-grid">
             <section class="dashboard-panel" aria-labelledby="courier-approvals-heading">
-                <h3 class="section-heading" id="courier-approvals-heading">Pending Courier Approvals</h3>
+                <h3 class="section-heading" id="courier-approvals-heading">Pedidos de aprovação de estafetas</h3>
                 <p class="section-description">Pedidos de registo de estafetas por analisar.</p>
                 <div class="data-table-wrapper">
                     <table class="data-table">
@@ -69,8 +69,17 @@
             </section>
 
             <section class="dashboard-panel" aria-labelledby="vehicle-approvals-heading">
-                <h3 class="section-heading" id="vehicle-approvals-heading">Pending Vehicle Approvals</h3>
+                <h3 class="section-heading" id="vehicle-approvals-heading">Pedidos de aprovação de veículos</h3>
                 <p class="section-description">Verifique os certificados antes de aprovar os veículos.</p>
+                <div class="vehicle-filter">
+                    <label for="vehicle-document-filter">Filtrar documentação</label>
+                    <select class="vehicle-select" id="vehicle-document-filter">
+                        <option value="all">Todos os veículos</option>
+                        <option value="expired">Documentação expirada</option>
+                        <option value="soon">A expirar em breve</option>
+                    </select>
+                    <p class="filter-result" id="vehicle-filter-result" aria-live="polite">3 veículos apresentados.</p>
+                </div>
                 <div class="data-table-wrapper">
                     <table class="data-table">
                         <thead>
@@ -81,20 +90,20 @@
                                 <th scope="col">Ação</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="vehicle-approvals-list">
+                            <tr data-document-status="expired">
                                 <td>AA-00-AA</td>
                                 <td>Rita Martins</td>
                                 <td><span class="alert-badge">Seguro expirado</span></td>
                                 <td><button class="approval-button" type="button">Rever</button></td>
                             </tr>
-                            <tr>
+                            <tr data-document-status="expired">
                                 <td>BB-11-BB</td>
                                 <td>João Costa</td>
                                 <td><span class="alert-badge">Inspeção expirada</span></td>
                                 <td><button class="approval-button" type="button">Rever</button></td>
                             </tr>
-                            <tr>
+                            <tr data-document-status="soon">
                                 <td>CC-22-CC</td>
                                 <td>Inês Silva</td>
                                 <td><span class="alert-text">Seguro expira em 3 dias</span></td>
@@ -110,5 +119,27 @@
     <footer class="site-footer">
         <p>&copy; 2026 PandaExpress · Entregas com espírito de Natal</p>
     </footer>
+    <script>
+        const vehicleDocumentFilter = document.getElementById('vehicle-document-filter');
+        const vehicleRows = Array.from(document.querySelectorAll('#vehicle-approvals-list tr'));
+        const vehicleFilterResult = document.getElementById('vehicle-filter-result');
+
+        vehicleDocumentFilter.addEventListener('change', () => {
+            const selectedStatus = vehicleDocumentFilter.value;
+            let visibleCount = 0;
+
+            vehicleRows.forEach((row) => {
+                const isVisible = selectedStatus === 'all' || row.dataset.documentStatus === selectedStatus;
+                row.hidden = !isVisible;
+                if (isVisible) {
+                    visibleCount += 1;
+                }
+            });
+
+            vehicleFilterResult.textContent = visibleCount === 1
+                ? '1 veículo apresentado.'
+                : `${visibleCount} veículos apresentados.`;
+        });
+    </script>
 </body>
 </html>

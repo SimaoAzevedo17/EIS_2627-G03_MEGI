@@ -91,7 +91,6 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.7rem;
     width: auto;
     min-height: 52px;
     margin: 0;
@@ -105,10 +104,6 @@
 .hero .primary-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 11px 22px rgba(185, 54, 56, 0.26);
-}
-
-.hero .primary-button span {
-    font-size: 1.2rem;
 }
 
 .hero-secondary-link {
@@ -903,6 +898,31 @@ a {
 .alert-text {
     color: var(--error);
     font-weight: 700;
+}
+
+.vehicle-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.vehicle-filter label {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.vehicle-filter .vehicle-select {
+    width: min(100%, 280px);
+    min-height: 40px;
+    padding: 0.5rem 0.7rem;
+}
+
+.filter-result {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.85rem;
 }
 
 .approval-actions {

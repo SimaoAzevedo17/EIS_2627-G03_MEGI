@@ -29,7 +29,7 @@
         </div>
 
         <section class="courier-section" aria-labelledby="vehicle-heading">
-            <h3 class="section-heading" id="vehicle-heading">Active Vehicle Selector</h3>
+            <h3 class="section-heading" id="vehicle-heading">Seleção do veículo ativo</h3>
             <p class="section-description">Selecione um veículo registado para esta rota.</p>
             <div class="field">
                 <label for="active-vehicle">Veículo ativo</label>
@@ -42,23 +42,23 @@
         </section>
 
         <section class="courier-section" aria-labelledby="courier-map-heading">
-            <h3 class="section-heading" id="courier-map-heading">Map Visualization</h3>
+            <h3 class="section-heading" id="courier-map-heading">Mapa da rota</h3>
             <p class="section-description">Rota de demonstração: um marcador de referência e um trajeto ilustrativo.</p>
             <div class="map-container" id="courier-map" role="region" aria-label="Mapa OpenStreetMap com rota ilustrativa da FEUP"></div>
         </section>
 
         <section class="courier-section" aria-labelledby="status-heading">
-            <h3 class="section-heading" id="status-heading">Order Status Controls</h3>
-            <p class="status-summary">Encomenda <strong>#CMS-1043</strong> — estado: <strong id="order-status" aria-live="polite">Initiated</strong></p>
+            <h3 class="section-heading" id="status-heading">Estado e ações da encomenda</h3>
+            <p class="status-summary">Encomenda <strong>#CMS-1043</strong> — estado: <strong id="order-status" aria-live="polite">Iniciada</strong></p>
             <div class="status-actions">
-                <button class="status-button status-button-primary" id="start-order" type="button">In Progress</button>
-                <button class="status-button status-button-primary" id="complete-order" type="button" hidden>Completed</button>
-                <button class="status-button status-button-danger" id="cancel-order" type="button" hidden>Cancelled</button>
+                <button class="status-button status-button-primary" id="start-order" type="button">Iniciar entrega</button>
+                <button class="status-button status-button-primary" id="complete-order" type="button" hidden>Concluir entrega</button>
+                <button class="status-button status-button-danger" id="cancel-order" type="button" hidden>Cancelar encomenda</button>
             </div>
         </section>
 
         <section class="courier-section" id="epod-section" aria-labelledby="epod-heading" hidden>
-            <h3 class="section-heading" id="epod-heading">e-POD Simulator — Proof of Delivery</h3>
+            <h3 class="section-heading" id="epod-heading">Simulador de comprovativo de entrega</h3>
             <p class="section-description">Para concluir, submeta uma assinatura digital ou uma fotografia da entrega.</p>
             <label class="field label" for="signature-canvas">Assinatura digital (opcional se anexar foto)</label>
             <canvas class="signature-canvas" id="signature-canvas" width="700" height="220"
@@ -87,15 +87,15 @@
         </section>
 
         <section class="courier-section" aria-labelledby="completed-heading">
-            <h3 class="section-heading" id="completed-heading">Completed Orders List</h3>
+            <h3 class="section-heading" id="completed-heading">Encomendas concluídas</h3>
             <p class="section-description">Histórico de encomendas concluídas de demonstração.</p>
             <div class="table-wrapper">
                 <table class="orders-table">
                     <thead><tr><th scope="col">Encomenda</th><th scope="col">Destino</th><th scope="col">Data</th><th scope="col">Estado</th></tr></thead>
                     <tbody id="completed-orders-body">
-                        <tr><td>#CMS-1042</td><td>Rua de Santa Catarina, Porto</td><td>20/10/2026</td><td class="order-status-completed">Completed</td></tr>
-                        <tr><td>#CMS-1038</td><td>Boavista, Porto</td><td>19/10/2026</td><td class="order-status-completed">Completed</td></tr>
-                        <tr><td>#CMS-1031</td><td>Matosinhos</td><td>18/10/2026</td><td class="order-status-completed">Completed</td></tr>
+                        <tr><td>#CMS-1042</td><td>Rua de Santa Catarina, Porto</td><td>20/10/2026</td><td class="order-status-completed">Concluída</td></tr>
+                        <tr><td>#CMS-1038</td><td>Boavista, Porto</td><td>19/10/2026</td><td class="order-status-completed">Concluída</td></tr>
+                        <tr><td>#CMS-1031</td><td>Matosinhos</td><td>18/10/2026</td><td class="order-status-completed">Concluída</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -133,21 +133,21 @@
         let hasSignature = false;
 
         startOrderButton.addEventListener('click', () => {
-            orderStatus.textContent = 'In Progress';
+            orderStatus.textContent = 'Em curso';
             startOrderButton.hidden = true;
             completeOrderButton.hidden = false;
             cancelOrderButton.hidden = false;
         });
 
         completeOrderButton.addEventListener('click', () => {
-            orderStatus.textContent = 'Proof of Delivery Required';
+            orderStatus.textContent = 'A aguardar comprovativo de entrega';
             completeOrderButton.disabled = true;
             epodSection.hidden = false;
             signatureCanvas.focus();
         });
 
         cancelOrderButton.addEventListener('click', () => {
-            orderStatus.textContent = 'Cancelled';
+            orderStatus.textContent = 'Cancelada';
             completeOrderButton.hidden = true;
             cancelOrderButton.hidden = true;
             startOrderButton.hidden = true;
@@ -155,7 +155,7 @@
 
             const returnedOrders = document.getElementById('returned-orders');
             const row = document.createElement('tr');
-            row.innerHTML = '<td>#CMS-1043</td><td>Cancelled</td><td>Devolvida à lista de encomendas.</td>';
+            row.innerHTML = '<td>#CMS-1043</td><td>Cancelada</td><td>Devolvida à lista de encomendas.</td>';
             document.getElementById('returned-orders-body').prepend(row);
             returnedOrders.hidden = false;
         });
@@ -219,14 +219,14 @@
                 return;
             }
 
-            orderStatus.textContent = 'Completed';
+            orderStatus.textContent = 'Concluída';
             epodFeedback.textContent = 'Prova registada na demonstração; encomenda concluída.';
             epodFeedback.dataset.state = 'success';
             epodSection.hidden = true;
             completeOrderButton.hidden = true;
             cancelOrderButton.hidden = true;
             const row = document.createElement('tr');
-            row.innerHTML = '<td>#CMS-1043</td><td>Porto (destino de demonstração)</td><td>21/10/2026</td><td class="order-status-completed">Completed</td>';
+            row.innerHTML = '<td>#CMS-1043</td><td>Porto (destino de demonstração)</td><td>21/10/2026</td><td class="order-status-completed">Concluída</td>';
             document.getElementById('completed-orders-body').prepend(row);
         });
     </script>
